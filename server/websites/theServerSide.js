@@ -24,7 +24,8 @@ exports.fetchAllPosts = async (url) => {
     return posts;
     // console.log(posts);
   } catch (error) {
-    console.error('Error:', error);
+    // console.error('Error:', error);
+    throw error;
   } finally {
     await browser.close();
   }

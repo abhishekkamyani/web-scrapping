@@ -3,6 +3,7 @@ const router = express.Router();
 const controller = require("../controllers/theServerSide");
 
 router
-  .get("/:category", controller.getAllPosts)
+  .get("/posts/:category", controller.getAllPosts)
+  .get("/post/:url", controller.getPost)
 
 module.exports = router;

@@ -10,7 +10,21 @@ exports.getAllPosts = async (req, res, next) => {
         console.log(result);
         return res.json(result);
     } catch (error) {
+        console.log("error in controller: " + error);
+        return res.json(error);
+    }
+}
+
+exports.getPost = async (req, res, next) => {
+    try {
+        const {category} = req.params;
+        const result = await theServerSide.fetchPost(`https://www.techtarget.com/searchenterpriseai/definition/AgentGPT`);
+
+        console.log(result);
+        return res.json(result);
+    } catch (error) {
         console.log(error);
         return error;
     }
 }
+
