@@ -4,6 +4,6 @@ const controller = require("../controllers/theServerSide");
 
 router
   .get("/posts/:category", controller.getAllPosts)
-  .get("/post/:url", controller.getPost)
+  .get("/post/", controller.getPost)
 
 module.exports = router;
