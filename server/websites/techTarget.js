@@ -8,7 +8,7 @@ exports.fetchAllPosts = async (url) => {
     await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 60000 }); // Ensure the DOM is fully loaded
 
     // Wait for the section with id 'definitions-listing' to be available
-    await page.waitForSelector('section#definitions-listing', { timeout: 20000 });
+    await page.waitForSelector('section#definitions-listing', { timeout: 60000 });
 
 
     const posts = await page.$$eval(
@@ -42,9 +42,9 @@ exports.fetchPost = async (url) => {
 
   try {
     // Replace with the URL of the page you want to scrape
-    await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 }); // Ensure the DOM is fully loaded
+    await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 60000 }); // Ensure the DOM is fully loaded
 
-    await page.waitForSelector('#content-body', { timeout: 20000 });
+    await page.waitForSelector('#content-body', { timeout: 60000 });
 
 
     // Extract the title

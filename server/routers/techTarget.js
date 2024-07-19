@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const controller = require("../controllers/theServerSide");
+const controller = require("../controllers/techTarget");
 
 router
   .get("/posts/:category", controller.getAllPosts)

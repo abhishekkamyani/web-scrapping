@@ -3,13 +3,13 @@ const express = require('express');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-const theServerSide = require("./websites/theServerSide");
-const theServerSideRouter = require("./routers/theServerSide");
+const theServerSide = require("./websites/techTarget");
+const theServerSideRouter = require("./routers/techTarget");
  
 const app = express();
 
 app
-    .use("/api/theserverside", theServerSideRouter)
+    .use("/api/techtarget", theServerSideRouter)
 
 const main = async () => {
     // const result = await theServerSide.fetch_all_posts("https://www.techtarget.com/whatis/glossary/Artificial-intelligence");

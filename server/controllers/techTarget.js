@@ -1,4 +1,4 @@
-const theServerSide = require("../websites/theServerSide");
+const theServerSide = require("../websites/techTarget");
 
 
 const BASE_URL = "https://www.techtarget.com/whatis/glossary/";
