@@ -3,21 +3,19 @@ const express = require('express');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-const theServerSide = require("./websites/techTarget");
-const theServerSideRouter = require("./routers/techTarget");
+const medium = require("./websites/medium");
+const techTargetRouter = require("./routers/techTarget");
+const mediumRouter = require("./routers/medium");
  
 const app = express();
 
 app
-    .use("/api/techtarget", theServerSideRouter)
+    .use("/api/techtarget", techTargetRouter)
+    .use("/api/medium", mediumRouter)
 
-const main = async () => {
-    // const result = await theServerSide.fetch_all_posts("https://www.techtarget.com/whatis/glossary/Artificial-intelligence");
-    // console.log("result: " + result);
-    // console.log(techtarget.fetch_posts);
-
-    theServerSide.fetch_post("https://www.theserverside.com/definition/abstract-class?_gl=1*15rr3b4*_ga*MjQyMjQwNTU0LjE3MjEyODk1MDM.*_ga_TQKE4GS5P9*MTcyMTI5NjY5OS4zLjEuMTcyMTI5NzIxOC4wLjAuMA..");
-}
+// const main = async () => {
+//     console.log(await medium.fetchAllPosts('https://medium.com/search?q=Web Development'));
+//  }
 
 
 

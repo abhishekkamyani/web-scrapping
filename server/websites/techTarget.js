@@ -63,10 +63,10 @@ exports.fetchPost = async (url) => {
     const authorImage = await page.getAttribute('#contributors-block .main-article-author img', 'src');
 
 
-    console.log('Title:', title);
-    console.log('Description:', descriptionElements);
-    console.log('Author:', author);
-    console.log('Author Image:', authorImage);
+    // console.log('Title:', title);
+    // console.log('Description:', descriptionElements);
+    // console.log('Author:', author);
+    // console.log('Author Image:', authorImage);
 
     return {title, descriptionElements, author, authorImage}
 
