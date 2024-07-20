@@ -14,7 +14,7 @@ export default function App() {
       <main className="min-h-screen">
         <Routes>
           <Route exact path="posts/:website" element={<Home />} />
-          <Route path="post" element={<Post />} />
+          <Route path="post/:website" element={<Post />} />
         </Routes>
       </main>
       {/* <Footer /> */}

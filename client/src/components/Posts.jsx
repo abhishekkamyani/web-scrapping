@@ -4,7 +4,7 @@
 import Post from "./Post";
 import PostLoader from "./PostLoader";
 
-export default function Posts({ posts, isFetched }) {
+export default function Posts({ posts, isFetched, website }) {
   return (
     <div className="relative px-6 lg:px-8 theme-switch-transition">
       <div className="absolute inset-0">
@@ -14,7 +14,7 @@ export default function Posts({ posts, isFetched }) {
         <div className="mx-auto grid max-w-lg gap-10 lg:max-w-none lg:grid-cols-3 2xl:grid-cols-4">
             {/* {posts?.map((post) => <Post key={post._id} post={post} />)} */}
           {isFetched
-            ? posts?.map((post, index) => <Post key={index} post={post} />)
+            ? posts?.map((post, index) => <Post key={index} post={post} website={website} />)
             : Array(4)
                 .fill(null)
                 .map((_, index) => <PostLoader key={index} />)}

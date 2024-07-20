@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 // import ImageLoader from "./loaders/ImageLoader";
-function Post({ post }) {
+function Post({ post, website }) {
   const { author } = post;
 
   return (
@@ -15,7 +15,7 @@ function Post({ post }) {
       </div>
       <div className="flex flex-1 flex-col justify-between bg-white p-6">
         <div className="flex-1">
-          <Link to={`../post?link=${post.link}`} className="mt-2 block">
+          <Link to={`../post/${website}?link=${post.link}`} className="mt-2 block">
             <p className="text-xl capitalize font-semibold text-gray-900 line-clamp-2">{post.title}</p>
             <p className="mt-3 text-base text-gray-500 line-clamp-3">
               {post.summary}
@@ -29,7 +29,6 @@ function Post({ post }) {
                   className="h-10 w-10 object-cover object-center rounded-full"
                   src={post.avatar}
                   alt="Author avatar"
-                  loaderClassName="rounded-full"
                 />
             </div>
           )}

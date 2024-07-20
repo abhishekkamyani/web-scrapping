@@ -51,7 +51,7 @@ exports.fetchPost = async (url) => {
     const title = await page.textContent('#content-body .section-title');
 
     // Extract the description from paragraphs, list items, and headings
-    const descriptionElements = await page.$$eval(
+    const description = await page.$$eval(
       '#content-body h2, #content-body p, #content-body ul li',
       elements => elements.map(element => element.textContent.trim()).join(' ')
     );
@@ -68,7 +68,7 @@ exports.fetchPost = async (url) => {
     // console.log('Author:', author);
     // console.log('Author Image:', authorImage);
 
-    return {title, descriptionElements, author, authorImage}
+    return { title, author, authorImage, url, description }
 
   } catch (error) {
     console.error('Error:', error);

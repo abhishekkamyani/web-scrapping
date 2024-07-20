@@ -17,7 +17,6 @@ export default function Home() {
     (data) => data.name === website
   );
   const location = useLocation();
-
   const queryParams = new URLSearchParams(location.search);
   const category = queryParams.get("category") || selectedWebsite?.categories[0];
   //   console.log(website);
@@ -86,7 +85,7 @@ export default function Home() {
           />
         )}
       </div>
-      <Posts posts={fetchedResult.data} isFetched={!fetchedResult.isLoading} />
+      <Posts posts={fetchedResult.data} website={selectedWebsite.slug} isFetched={!fetchedResult.isLoading} />
     </div>
   );
 }

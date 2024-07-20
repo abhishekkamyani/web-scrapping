@@ -1,11 +1,13 @@
 const data = [
     {
         name: "Medium",
+        slug: "medium",
         categories: ["Artificial Intelligence", "Web Development", "Data Science", "Machine Learning", "Deep Learning", "React", "JavaScript", "Python"],
         api: "medium/posts/"
     },
     {
         name: "Tech Target",
+        slug: "techtarget",
         categories: ["Artificial-intelligence", "Internet-of-Things", "Robotics", "Agile-Scrum-XP-Programming", "Application-Development", "DevOps", "Programming"],
         api: "techtarget/posts/"
     }
