@@ -49,7 +49,7 @@ exports.fetchPost = async (url) => {
       // Replace with the URL of the page you want to scrape
       await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 120000 }); // Ensure the DOM is fully loaded
   
-      await page.waitForSelector('h1.pw-post-title', { timeout: 30000 });
+      await page.waitForSelector('h1.pw-post-title', { timeout: 60000 });
   
       const post = await page.evaluate(() => {
         const element = document.querySelector('h1.pw-post-title');
