@@ -1,5 +1,4 @@
 const { chromium } = require('playwright');
-const { fetchPost } = require('./techTarget');
 
 exports.fetchAllPosts = async (url) => {
     const browser = await chromium.launch({ headless: false });

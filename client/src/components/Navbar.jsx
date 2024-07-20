@@ -2,10 +2,12 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Collapse, initTWE, Dropdown } from "tw-elements";
 import { RenderHumburgerIcon } from "../utils/iconsHelper";
+import { useWebsitesMetadata } from "../contexts/WebsitesMetadataContext";
 function Navbar() {
   useEffect(() => {
     initTWE({ Collapse, Dropdown });
   });
+  const { websitesMetadata } = useWebsitesMetadata();
 
   return (
     <>
@@ -22,7 +24,7 @@ function Navbar() {
           >
             {/* Hamburger icon */}
             <span>
-            <RenderHumburgerIcon className="w-10 h-10" color="white" />
+              <RenderHumburgerIcon className="w-10 h-10" color="white" />
             </span>
           </button>
           <div
@@ -42,34 +44,18 @@ function Navbar() {
               className="list-style-none ms-auto lg:me-2 max-lg:mb-5 flex flex-col gap-y-2 ps-0 lg:flex-row"
               data-twe-navbar-nav-ref=""
             >
-              <Link
-                to="/"
-                type="button"
-                data-twe-ripple-color="light"
-                className="me-3 inline-block rounded px-2 pb-2 pt-2.5 text-sm font-medium uppercase leading-normal text-white hover:text-black 
-                transition duration-150 ease-in-out"
-              >
-                Home
-              </Link>
-              <Link
-                to="/login"
-                type="button"
-                data-twe-ripple-init=""
-                data-twe-ripple-color="light"
-                className="me-3 inline-block rounded px-2 pb-2 pt-2.5 text-sm font-medium uppercase leading-normal text-white hover:text-black transition duration-150 ease-in-out"
-              >
-                Login
-              </Link>
-
-              <Link
-                to="/register"
-                type="button"
-                data-twe-ripple-init=""
-                data-twe-ripple-color="light"
-                className="me-3 inline-block rounded bg-dark-main px-2 lg:px-6  pb-2 pt-2.5 text-sm font-medium uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-black"
-              >
-                Sign up for free
-              </Link>
+              {websitesMetadata?.map((website) => (
+                <Link
+                  key={website.api}
+                  to={website.name}
+                  type="button"
+                  data-twe-ripple-init=""
+                  data-twe-ripple-color="light"
+                  className=" inline-block rounded bg-dark-main px-2 lg:px-4  pb-2 pt-2.5 text-sm font-medium uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-black"
+                >
+                  {website.name}
+                </Link>
+              ))}
             </ul>
           </div>
         </div>
