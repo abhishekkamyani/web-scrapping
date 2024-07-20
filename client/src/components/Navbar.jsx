@@ -47,7 +47,7 @@ function Navbar() {
               {websitesMetadata?.map((website) => (
                 <Link
                   key={website.api}
-                  to={website.name}
+                  to={"/posts/"+website.name}
                   type="button"
                   data-twe-ripple-init=""
                   data-twe-ripple-color="light"

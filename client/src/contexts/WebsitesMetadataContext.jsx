@@ -17,21 +17,29 @@ export function WebsitesMetadataProvider({ children }) {
     refetchOnWindowFocus: false,
   });
 
+  if (!fetchedResult.isFetched) {
+    return <div>Loading</div>;
+  }
+
   return (
     <WebsiteMetadataContext.Provider
-      value={{ websitesMetadata: fetchedResult.data?.metadata, isFetched: !fetchedResult.isLoading }}
+      value={{
+        websitesMetadata: fetchedResult.data?.metadata,
+        isFetched: !fetchedResult.isLoading,
+      }}
     >
       {children}
     </WebsiteMetadataContext.Provider>
   );
 }
 
-
 export const useWebsitesMetadata = () => {
-    const metadata = useContext(WebsiteMetadataContext);
-  
-    if (!metadata) {
-      throw new Error("useWebsitesMetadata must be used within an WebsitesMetadataProvider");
-    }
-    return metadata;
-  };
+  const metadata = useContext(WebsiteMetadataContext);
+
+  if (!metadata) {
+    throw new Error(
+      "useWebsitesMetadata must be used within an WebsitesMetadataProvider"
+    );
+  }
+  return metadata;
+};

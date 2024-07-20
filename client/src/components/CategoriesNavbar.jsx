@@ -5,7 +5,7 @@ export default function CategoriesNavbar({ categories, selectedCategory }) {
   const [isRight, setIsRight] = useState(true);
   const [isLeft, setIsLeft] = useState(false);
   const containerRef = useRef(null);
-  console.log(categories);
+//   console.log(categories);
 
   const handleScroll = (e) => {
     const container = e.target;
@@ -61,20 +61,19 @@ export default function CategoriesNavbar({ categories, selectedCategory }) {
   }, [categories]);
 
   return (
-    // <></>
-    <div className="relative theme-switch-transition mx-auto categories-nav w-100 md:w-[90%]">
+    <div className="relative mx-auto categories-nav w-100 md:w-[90%]">
       <ul
         ref={containerRef}
-        className="flex border-b-[2px]text-center items-center mx-10 overflow-y-hidden my-5 pb-3 text-nowrap"
+        className="flex border-b-[2px] border-black/25 text-center items-center mx-10 overflow-y-hidden my-5 pb-3 text-nowrap"
         onScroll={handleScroll}
       >
         {categories?.map((category, index) => (
           <li key={index} className="mr-10 text-lg text-black mb-2">
             <Link
-            //   to={category}
+              to={`?category=${category}`}
               className={`${
                 selectedCategory === category && "font-extrabold"
-              } hover:font-bold transition-all`}
+              }`}
             >
               {category}
             </Link>

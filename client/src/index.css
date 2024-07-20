@@ -62,3 +62,10 @@ body {
 ::-webkit-scrollbar-track {
     @apply bg-[#f4e8d1];
 }
+
+
+.categories-nav {
+    ::-webkit-scrollbar {
+        display: none;
+    }
+}

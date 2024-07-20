@@ -18,8 +18,8 @@ exports.fetchAllPosts = async (url) => {
         const remainingText = li.childNodes.length > 1 ? li.childNodes[1].textContent.trim() : '';
         return {
           title: anchor ? anchor.textContent.trim() : '',
-          href: anchor ? anchor.href : null,
-          description: remainingText ? remainingText.replace(/^-\s*/, '') : ''  // Remove leading hyphen and space
+          link: anchor ? anchor.href : null,
+          summary: remainingText ? remainingText.replace(/^-\s*/, '') : ''  // Remove leading hyphen and space
         };
       })
     );

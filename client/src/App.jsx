@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
+import Post from "./pages/Post";
 
 export default function App() {
 
@@ -12,7 +13,8 @@ export default function App() {
       <Navbar />
       <main className="min-h-screen">
         <Routes>
-          <Route exact path="/:website" element={<Home />} />
+          <Route exact path="posts/:website" element={<Home />} />
+          <Route path="post" element={<Post />} />
         </Routes>
       </main>
       {/* <Footer /> */}
