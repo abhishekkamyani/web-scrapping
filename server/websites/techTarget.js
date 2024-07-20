@@ -53,22 +53,22 @@ exports.fetchPost = async (url) => {
     // Extract the description from paragraphs, list items, and headings
     const description = await page.$$eval(
       '#content-body h2, #content-body p, #content-body ul li',
-      elements => elements.map(element => element.textContent.trim()).join(' ')
+      elements => elements.map(element => element.textContent)
     );
 
     // Extract the author name
     const author = await page.textContent('#contributors-block .main-article-author a');
 
     // Extract the author image
-    const authorImage = await page.getAttribute('#contributors-block .main-article-author img', 'src');
+    const avatar = await page.getAttribute('#contributors-block .main-article-author img', 'src');
 
 
     // console.log('Title:', title);
     // console.log('Description:', descriptionElements);
     // console.log('Author:', author);
-    // console.log('Author Image:', authorImage);
+    // console.log('Author Image:', avatar);
 
-    return { title, author, authorImage, url, description }
+    return { title, author, avatar, url, description }
 
   } catch (error) {
     console.error('Error:', error);

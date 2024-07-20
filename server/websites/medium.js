@@ -53,7 +53,7 @@ exports.fetchPost = async (url) => {
     const post = await page.evaluate((url) => {
       const element = document.querySelector('h1.pw-post-title');
       if (element) {
-        return { title: element.innerText, url: url, description: element.parentNode.parentNode.innerText, }; // Returning outerHTML for debugging purposes
+        return { title: element.innerText, url: url, description: element.parentNode?.parentNode?.innerText.split("\n"), }; // Returning outerHTML for debugging purposes
       } else {
         return null;
       }
