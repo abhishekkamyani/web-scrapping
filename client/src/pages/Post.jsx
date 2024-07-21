@@ -74,13 +74,13 @@ export default function Post() {
             </address>
           </header>
 
-          <figure>
+          {/* <figure>
             <img
               src={post.blogCover}
               style={{ maxHeight: "500px" }}
               alt="blog cover"
             />
-          </figure>
+          </figure> */}
 
           <section className="mt-20">{post.description?.map(data=> <div>{data} <br /></div>)}</section>
         </article>

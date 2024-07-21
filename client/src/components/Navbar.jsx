@@ -36,7 +36,7 @@ function Navbar() {
             <a href="/">
               <img
                 className="h-7 hover:scale-110 transition-all ease-linear max-lg:my-5 mx-auto"
-                src="/images/company-logo.png"
+                src="/images/company-brand.png"
               />
             </a>
             {/* Left navigation links */}

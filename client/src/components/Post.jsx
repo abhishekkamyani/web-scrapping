@@ -7,7 +7,7 @@ function Post({ post, website }) {
     <div className="flex flex-col overflow-hidden rounded-lg shadow-lg outline outline-1">
       <div className="flex-shrink-0 relative">
         <img
-          src={post.cover}
+          src={post.cover || "../images/BlogCover.png"}
           alt="Blog cover"
           className="h-48 w-full object-cover object-center"
         />

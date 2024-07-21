@@ -1,12 +1,10 @@
 const { chromium } = require('playwright');
 
 exports.fetchAllPosts = async (url) => {
-  const browser = await chromium.launch({ headless: false });
+  const browser = await chromium.launch({ headless: true });
   const page = await browser.newPage();
 
   try {
-
-
     await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 120000 });
 
     await page.waitForSelector('.co.bg.cp', { timeout: 60000 });
@@ -19,6 +17,7 @@ exports.fetchAllPosts = async (url) => {
         const titleElement = article.querySelector('h2');
         const summary = article.querySelector('h3')?.innerText;
         const avatar = article.querySelector("div.l.eo img")?.getAttribute('src');
+        const cover = article.querySelectorAll("img")[2]?.getAttribute("src");
         const author = article.querySelector("p.be.b")?.innerText;
         const linkElement = article.querySelector("a.af.ag.at");
         articles.push({
@@ -26,7 +25,8 @@ exports.fetchAllPosts = async (url) => {
           link: linkElement ? linkElement.href : null,
           summary,
           avatar,
-          author
+          author,
+          cover,
         });
       });
       return articles;
@@ -41,19 +41,25 @@ exports.fetchAllPosts = async (url) => {
 }
 
 exports.fetchPost = async (url) => {
-  const browser = await chromium.launch({ headless: false }); // Use headful mode for better debugging
+  const browser = await chromium.launch({ headless: true }); // Use headful mode for better debugging
   const page = await browser.newPage();
 
   try {
-    // Replace with the URL of the page you want to scrape
     await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 120000 }); // Ensure the DOM is fully loaded
 
     await page.waitForSelector('h1.pw-post-title', { timeout: 60000 });
 
     const post = await page.evaluate((url) => {
       const element = document.querySelector('h1.pw-post-title');
+      const container = element.parentNode?.parentNode;
+      const authorContainer = container.querySelector(".speechify-ignore")
+      const avatar = authorContainer.querySelector("img")?.src;
+      const author = authorContainer.querySelector("p > a")?.innerText;
+      // const description = element.parentNode?.parentNode?.innerText.split("\n");
+      const description = Array.from(container.children).filter((node, index) => index !== 0).map(node => node.innerText);
+
       if (element) {
-        return { title: element.innerText, url: url, description: element.parentNode?.parentNode?.innerText.split("\n"), }; // Returning outerHTML for debugging purposes
+        return { title: element.innerText, author, avatar, url, description, };
       } else {
         return null;
       }
