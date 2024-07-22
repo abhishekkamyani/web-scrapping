@@ -7,29 +7,28 @@ exports.fetchAllPosts = async (url) => {
   try {
     await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 120000 });
 
-    await page.waitForSelector('.co.bg.cp', { timeout: 60000 });
+    await page.waitForSelector('.bg.lp.lq.lr', { timeout: 20000 });
 
     const posts = await page.evaluate(() => {
       const container = document.querySelectorAll('.co.bg.cp')[1];
-      // const articleElements = container.querySelectorAll(".bg.lp.lq.lr");
-      // const articleElements = container.querySelectorAll("div.bg.lw.lx.ly.lz");
-      const articles = container.children[0].innerHTML;
-      // articleElements.forEach(article => {
-      //   const titleElement = article.querySelector('h2');
-      //   const summary = article.querySelector('h3')?.innerText;
-      //   const avatar = article.querySelector("div.l.eo img")?.getAttribute('src');
-      //   const cover = article.querySelectorAll("img")[2]?.getAttribute("src");
-      //   const author = article.querySelector("p.be.b")?.innerText;
-      //   const linkElement = article.querySelector("a.af.ag.at");
-      //   articles.push({
-      //     title: titleElement ? titleElement.innerText.trim() : null,
-      //     link: linkElement ? linkElement.href : null,
-      //     summary,
-      //     avatar,
-      //     author,
-      //     cover,
-      //   });
-      // });
+      const articleElements = container.querySelectorAll(".bg.lp.lq.lr");
+      const articles = [];
+      articleElements.forEach(article => {
+        const titleElement = article.querySelector('h2');
+        const summary = article.querySelector('h3')?.innerText;
+        const avatar = article.querySelector("div.l.eo img")?.getAttribute('src');
+        const cover = article.querySelectorAll("img")[2]?.getAttribute("src");
+        const author = article.querySelector("p.be.b")?.innerText;
+        const linkElement = article.querySelector("a.af.ag.at");
+        articles.push({
+          title: titleElement ? titleElement.innerText.trim() : null,
+          link: linkElement ? linkElement.href : null,
+          summary,
+          avatar,
+          author,
+          cover,
+        });
+      }); 
       return articles;
     });
     return posts;
@@ -37,12 +36,12 @@ exports.fetchAllPosts = async (url) => {
     console.log(error);
     return error;
   } finally {
-    // await browser.close();
+    await browser.close();
   }
 }
 
 exports.fetchPost = async (url) => {
-  const browser = await chromium.launch({ headless: true }); // Use headful mode for better debugging
+  const browser = await chromium.launch({ headless: false }); // Use headful mode for better debugging
   const page = await browser.newPage();
 
   try {

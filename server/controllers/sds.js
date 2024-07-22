@@ -14,3 +14,18 @@ exports.getAllPosts = async (req, res, next) => {
         return res.json(error);
     }
 }
+
+exports.getPost = async (req, res, next) => {
+    try {
+        const { url } = req.query;
+        console.log(url);
+        const result = await sds.fetchPost(url);
+
+        console.log(result);
+        return res.json(result);
+    } catch (error) {
+        console.log("error in controller: " + error);
+        return res.json(error);
+    }
+}
+
