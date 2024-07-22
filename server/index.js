@@ -3,10 +3,11 @@ const express = require('express');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-const medium = require("./websites/medium");
+const sds = require("./websites/sds");
 const techTargetRouter = require("./routers/techTarget");
 const mediumRouter = require("./routers/medium");
-const websites = require("./routers/websites");
+const sdsRouter = require("./routers/sds");
+const websitesRouter = require("./routers/websites");
  
 const app = express();
 
@@ -24,13 +25,14 @@ app.use(cors({
 }));
 
 app
-    .use("/api/v1/websites", websites)
+    .use("/api/v1/websites", websitesRouter)
     .use("/api/v1/techtarget", techTargetRouter)
     .use("/api/v1/medium", mediumRouter)
+    .use("/api/v1/sds", sdsRouter)
 
-// const main = async () => {
-//     console.log(await medium.fetchAllPosts('https://medium.com/search?q=Web Development'));
-//  }
+const main = async () => {
+    console.log(await sds.fetchAllPosts("https://www.superdatascience.com/blogs"));
+ }
 
 
 

@@ -10,6 +10,12 @@ const data = [
         slug: "techtarget",
         categories: ["Artificial-intelligence", "Internet-of-Things", "Robotics", "Agile-Scrum-XP-Programming", "Application-Development", "DevOps", "Programming"],
         api: "techtarget/posts/"
+    },
+    {
+        name: "Super DataScience",
+        slug: "sds",
+        categories: ["All"],
+        api: "sds/posts/"
     }
 ]
 
