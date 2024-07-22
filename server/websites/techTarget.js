@@ -48,7 +48,7 @@ exports.fetchPost = async (url) => {
 
 
     // Extract the title
-    const title = await page.textContent('#content-body .section-title');
+    
 
     // Extract the description from paragraphs, list items, and headings
     const description = await page.$$eval(
@@ -56,11 +56,20 @@ exports.fetchPost = async (url) => {
       elements => elements.map(element => element.textContent)
     );
 
+    const post = await page.evaluate(() => {
+      const container = document.querySelector("#content-body");
+      const title = container.querySelector('#content-body .section-title')?.innerText;
+      const author = document.querySelector('#contributors-block .main-article-author a')?.innerText;
+      const avatar = document.querySelector('#contributors-block .main-article-author img')?.src;
+
+      return { title, author, avatar};
+    });
+
+    return {...post, url, description};
+
     // Extract the author name
-    const author = await page.textContent('#contributors-block .main-article-author a');
 
     // Extract the author image
-    const avatar = await page.getAttribute('#contributors-block .main-article-author img', 'src');
 
 
     // console.log('Title:', title);
@@ -68,7 +77,7 @@ exports.fetchPost = async (url) => {
     // console.log('Author:', author);
     // console.log('Author Image:', avatar);
 
-    return { title, author, avatar, url, description }
+    // return { title, author, avatar, url, description }
 
   } catch (error) {
     console.error('Error:', error);
