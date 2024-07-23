@@ -16,7 +16,13 @@ const data = [
         slug: "sds",
         categories: ["All"],
         api: "sds/posts/"
-    }
+    },
+    {
+        name: "Coursera",
+        slug: "coursera",
+        categories: ["ai-and-machine-learning", "data-analytics", "data-engineering", "data-science", "advance-your-machine-learning-engineer-career", "advance-your-business-analyst-career", "advance-your-data-analyst-career", "advance-your-data-scientist-career"],
+        api: "coursera/posts/"
+    },
 ]
 
 

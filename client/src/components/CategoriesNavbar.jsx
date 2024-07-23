@@ -61,7 +61,7 @@ export default function CategoriesNavbar({ categories, selectedCategory }) {
   }, [categories]);
 
   return (
-    <div className="relative mx-auto categories-nav w-100 md:w-[90%]">
+    <div className="relative mx-auto categories-nav w-100 md:w-[90%] capitalize">
       <ul
         ref={containerRef}
         className="flex border-b-[2px] border-black/25 text-center items-center mx-10 overflow-y-hidden my-5 pb-3 text-nowrap"

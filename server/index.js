@@ -3,10 +3,11 @@ const express = require('express');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-const sds = require("./websites/sds");
+const coursera = require("./websites/coursera");
 const techTargetRouter = require("./routers/techTarget");
 const mediumRouter = require("./routers/medium");
 const sdsRouter = require("./routers/sds");
+const courseraRouter = require("./routers/coursera");
 const websitesRouter = require("./routers/websites");
  
 const app = express();
@@ -29,9 +30,10 @@ app
     .use("/api/v1/techtarget", techTargetRouter)
     .use("/api/v1/medium", mediumRouter)
     .use("/api/v1/sds", sdsRouter)
+    .use("/api/v1/coursera", courseraRouter)
 
 const main = async () => {
-    console.log(await sds.fetchAllPosts("https://www.superdatascience.com/blogs"));
+    console.log(await coursera.fetchAllPosts("https://www.coursera.org/articles/category/ai-and-machine-learning"));
  }
 
 

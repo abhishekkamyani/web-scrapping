@@ -7,7 +7,7 @@ exports.fetchAllPosts = async (url) => {
   try {
     await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 120000 });
 
-    await page.waitForSelector('.bg.lp.lq.lr', { timeout: 20000 });
+    await page.waitForSelector('.bg.lp.lq.lr', { timeout: 50000 });
 
     const posts = await page.evaluate(() => {
       const container = document.querySelectorAll('.co.bg.cp')[1];
