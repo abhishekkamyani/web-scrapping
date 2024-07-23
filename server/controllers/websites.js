@@ -23,6 +23,12 @@ const data = [
         categories: ["ai-and-machine-learning", "data-analytics", "data-engineering", "data-science", "advance-your-machine-learning-engineer-career", "advance-your-business-analyst-career", "advance-your-data-analyst-career", "advance-your-data-scientist-career"],
         api: "coursera/posts/"
     },
+    {
+        name: "Datacamp",
+        slug: "datacamp",
+        categories: ["ai", "aws", "learn-business-intelligence", "git", "power-bi", "python", "r-programming", "sql"],
+        api: "datacamp/posts/"
+    },
 ]
 
 

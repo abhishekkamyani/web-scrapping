@@ -7,7 +7,7 @@ exports.fetchAllPosts = async (url) => {
     try {
         await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 120000 });
 
-        await page.waitForSelector('.css-151ltm', { timeout: 50000 });
+        await page.waitForSelector('img.css-xah9so', { timeout: 50000 });
 
         const posts = await page.evaluate(() => {
             const containers = document.querySelectorAll('.css-151ltm');
@@ -20,7 +20,7 @@ exports.fetchAllPosts = async (url) => {
                     const link = titleContainer.href;
                     const title = titleContainer.querySelector("h2").innerText;
                     const summary = article.querySelector(".css-11iuev0").innerText
-                    const avatar = article.querySelector(".css-12e3nr9 .css-evebs5 img")?.src
+                    const avatar = article.querySelector("img.css-xah9so")?.src
                     const author = article.querySelector(".css-12e3nr9 .css-9ii2gs").innerText
                     const cover = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQhU3YRCamyiGO2T4wgqqpWLY15QN_0y5Ziw&s";
                   
