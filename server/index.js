@@ -13,7 +13,7 @@ const datacamp = require("./websites/datacamp");
  
 const app = express();
 
-const allowedOrigins = ['http://localhost:5173', 'https://production-website.com'];
+const allowedOrigins = ['http://localhost:5174', 'https://production-website.com'];
 
 app.use(cors({
     origin: function (origin, callback) {
@@ -35,7 +35,7 @@ app
     .use("/api/v1/datacamp", datacampRouter)
 
 const main = async () => {
-    console.log(await datacamp.fetchAllPosts("https://www.datacamp.com/blog/category/ai"));
+    console.log(await datacamp.fetchPost("https://www.datacamp.com/blog/7-ai-projects-for-all-levels"));
  }
 
 
