@@ -4,6 +4,6 @@ const controller = require("../controllers/coursera");
 
 router
   .get("/posts/:category", controller.getAllPosts)
-//   .get("/post/", controller.getPost)
+  .get("/post/", controller.getPost)
 
 module.exports = router;

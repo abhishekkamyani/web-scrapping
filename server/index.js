@@ -33,7 +33,7 @@ app
     .use("/api/v1/coursera", courseraRouter)
 
 const main = async () => {
-    console.log(await coursera.fetchAllPosts("https://www.coursera.org/articles/category/ai-and-machine-learning"));
+    console.log(await coursera.fetchPost("https://www.coursera.org/articles/natural-language-generation"));
  }
 
 

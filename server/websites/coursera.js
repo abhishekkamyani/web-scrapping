@@ -17,7 +17,7 @@ exports.fetchAllPosts = async (url) => {
                 const title = article.querySelector("article.css-1klw6x6 .cds-119.css-1f1yzcm.cds-121").innerText;
                 const summary = article.querySelector("article.css-1klw6x6 .css-1dovm6n").innerText
                 const avatar = "https://about.coursera.org/static/whiteC-ebcee57f469112d4f4c17dc1ae17c70d.svg";
-                const author = "Coursera Team"
+                const author = "Coursera Team";
                 const cover = article.querySelector("article.css-1klw6x6 img").getAttribute("src")
                 const link = article.querySelector("a").getAttribute("href")
                 if (articles.find(el => el.link == link)) {
@@ -36,3 +36,41 @@ exports.fetchAllPosts = async (url) => {
         await browser.close();
     }
 }
+
+
+exports.fetchPost = async (url) => {
+    const browser = await chromium.launch({ headless: false }); // Use headful mode for better debugging
+    const page = await browser.newPage();
+
+    try {
+        await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 120000 }); // Ensure the DOM is fully loaded
+
+        await page.waitForSelector('.css-1oquxbd', { timeout: 60000 });
+
+        const post = await page.evaluate((url) => {
+            container = document.querySelector(".css-1oquxbd");
+            const title = container.querySelector("h1")?.innerText;
+            const avatar = "https://about.coursera.org/static/whiteC-ebcee57f469112d4f4c17dc1ae17c70d.svg";
+            const author = "Coursera Team"
+            const descriptionContainer = document.querySelector(".rc-RichText")
+            const description = Array.from(descriptionContainer.children)?.map(d => d.innerText);
+
+            return { title, author, avatar, url, description };
+        }, url);
+
+        if (post) {
+            console.log('Parent node found:', post);
+            return post;
+        } else {
+            console.log('Parent node not found');
+            return [];
+        }
+
+    } catch (error) {
+        console.error('Error:', error);
+        throw error;
+    } finally {
+        await browser.close();
+    }
+}
+
